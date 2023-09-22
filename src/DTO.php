@@ -3,15 +3,15 @@
 /*
  * This file is part of the cblink/laravel-dto.
  *
- * (c) Nick <me@xieying.vip>
+ * (c) sunny5156 <sunny5156@qq.com>
  *
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Cblink\DTO;
+namespace Aimilink\DTO;
 
-use Cblink\DTO\Traits\PayloadTrait;
-use Cblink\DTO\Traits\ValidatorTrait;
+use Aimilink\DTO\Traits\PayloadTrait;
+use Aimilink\DTO\Traits\ValidatorTrait;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 

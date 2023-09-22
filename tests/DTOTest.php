@@ -3,16 +3,16 @@
 /*
  * This file is part of the cblink/laravel-dto.
  *
- * (c) Nick <me@xieying.vip>
+ * (c) sunny5156 <sunny5156@qq.com>
  *
  * This source file is subject to the MIT license that is bundled.
  */
 
 namespace Tests;
 
-use Cblink\DTO\DTO;
-use Cblink\DTO\Exceptions\DTOException;
-use Cblink\DTO\ServiceProvider;
+use Aimilink\DTO\DTO;
+use Aimilink\DTO\Exceptions\DTOException;
+use Aimilink\DTO\ServiceProvider;
 use Illuminate\Filesystem\Filesystem;
 
 class DTOTest extends TestCase

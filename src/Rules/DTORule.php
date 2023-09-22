@@ -3,14 +3,14 @@
 /*
  * This file is part of the cblink/laravel-dto.
  *
- * (c) Nick <me@xieying.vip>
+ * (c) sunny5156 <sunny5156@qq.com>
  *
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Cblink\DTO\Rules;
+namespace Aimilink\DTO\Rules;
 
-use Cblink\DTO\DTO;
+use Aimilink\DTO\DTO;
 use Illuminate\Contracts\Validation\Rule;
 
 class DTORule implements Rule
