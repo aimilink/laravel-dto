@@ -8,19 +8,18 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Aimilink\DTO;
+namespace Aimilink\Dto;
 
-use Aimilink\DTO\Traits\PayloadTrait;
-use Aimilink\DTO\Traits\ValidatorTrait;
+use ArrayAccess;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
+use Serializable;
 
 /**
  * Class DTO.
  */
-abstract class DTO implements Arrayable
+class Dto implements Arrayable, Serializable, ArrayAccess
 {
-    use ValidatorTrait;
     use PayloadTrait;
 
     /**
@@ -29,56 +28,59 @@ abstract class DTO implements Arrayable
     protected $origin = [];
 
     /**
+     * @var array
+     */
+    protected $payload = [];
+
+    /**
+     * @var array
+     */
+    protected $fillable = [];
+
+    /**
      * DTO constructor.
-     *
-     * @param bool $verify
-     *
-     * @throws \Throwable
      */
-    public function __construct(array $data = [], $verify = true)
+    public function __construct(array $data = [])
     {
-        $this->setOriginData($data);
-        $this->bootstrap($verify);
-    }
-
-    public static function make(array $data = [], $verify = true)
-    {
-        return new static($data, $verify);
+        $this->setOriginData($data)->setPayload();
     }
 
     /**
-     * @param $verify
-     *
-     * @throws \Throwable
+     * @return $this
      */
-    public function bootstrap($verify)
+    protected function setOriginData(array $data = []): DTO
     {
-        $this->validate($verify);
-        $this->setPayload();
-    }
+        $this->origin = $data;
 
-    abstract public function rules(): array;
-
-    public function toArray(): array
-    {
-        return $this->payload;
-    }
-
-    public function getOrigin(): array
-    {
-        return $this->origin;
+        return $this;
     }
 
     /**
-     * @return void
+     * @return $this
      */
-    public function setOriginData(array $data = [])
+    protected function setPayload(array $payload = []): DTO
     {
-        if (!$data && function_exists('request')) {
-            $data = request()->all();
+        $payload = $payload ?: $this->getOrigin();
+
+        $fillable = $this->fillable();
+
+        $this->payload = in_array('*', $fillable) ?
+            $payload :
+            Arr::only($payload, $fillable);
+
+        return $this;
+    }
+
+    /**
+     * @return array|string[]
+     */
+    protected function fillable(): array
+    {
+        if (empty($this->fillable)) {
+            $this->fillable = ['*'];
         }
 
-        $this->origin = $data;
+        return $this->fillable;
     }
 
     /**
@@ -91,30 +93,6 @@ abstract class DTO implements Arrayable
      */
     public function getItem($key, $default = null)
     {
-        return Arr::get($this->payload ?: $this->origin, $key, $default);
-    }
-
-    /**
-     * @param $name
-     *
-     * @return array|\ArrayAccess|null
-     *
-     * @throws \Throwable
-     */
-    public function __get($name)
-    {
-        return $this->getAttribute($name);
-    }
-
-    /**
-     * 实现__isset防止empty检测不到值
-     *
-     * @param $name
-     *
-     * @return bool
-     */
-    public function __isset($name)
-    {
-        return isset($this->payload[$name]);
+        return Arr::get($this->payload, $key, $default);
     }
 }

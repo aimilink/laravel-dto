@@ -9,7 +9,14 @@
 $ composer require aimilink/laravel-dto -vvv
 ```
 
-> 注意，2.x版本和1.x版本完全不兼容，不可相互使用
+## 生成DTO
+
+```shell script
+
+// 默认将创建到项目app/DTO目录
+php artisan make:dto BaseDTO
+
+```
 
 
 ## Contributing
