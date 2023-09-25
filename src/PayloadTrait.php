@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the cblink/laravel-dto.
+ * This file is part of the aimilink/laravel-dto.
  *
  * (c) sunny5156 <sunny5156@qq.com>
  *
@@ -66,7 +66,7 @@ trait PayloadTrait
      *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if (in_array($offset, $this->fillable()) && in_array('*', $this->fillable())) {
             throw new \InvalidArgumentException(sprintf('%s attributes is not defined', $offset));
@@ -79,7 +79,7 @@ trait PayloadTrait
         return $this->payload[$offset];
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         // TODO: Implement offsetSet() method.
     }
@@ -87,7 +87,7 @@ trait PayloadTrait
     /**
      * @param $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->payload[$offset]);
     }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the cblink/laravel-dto.
+ * This file is part of the aimilink/laravel-dto.
  *
  * (c) sunny5156 <sunny5156@qq.com>
  *
