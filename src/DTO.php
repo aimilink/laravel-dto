@@ -11,8 +11,8 @@
 namespace Aimilink\Dto;
 
 use ArrayAccess;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Arr;
+use OverNick\Support\Arr;
+use OverNick\Support\Contracts\Arrayable;
 use Serializable;
 
 /**
