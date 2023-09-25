@@ -115,4 +115,10 @@ trait PayloadTrait
     {
         return $this->offsetExists($name);
     }
+
+
+    public function toDto()
+    {
+
+    }
 }

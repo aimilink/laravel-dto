@@ -10,15 +10,16 @@
 
 namespace Aimilink\Dto;
 
+use Aimilink\Dto\Contracts\ToDtoContract;
 use ArrayAccess;
-use OverNick\Support\Arr;
-use OverNick\Support\Contracts\Arrayable;
+use Hyperf\Utils\Arr;
+use Hyperf\Utils\Contracts\Arrayable;
 use Serializable;
 
 /**
  * Class DTO.
  */
-class Dto implements Arrayable, Serializable, ArrayAccess
+class Dto implements Arrayable, Serializable, ArrayAccess,ToDtoContract
 {
     use PayloadTrait;
 
